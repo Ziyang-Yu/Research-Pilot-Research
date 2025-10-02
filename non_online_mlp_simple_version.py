@@ -145,6 +145,7 @@ def evaluate_model(model, test_X, test_y, device: str, num_tasks: int, model_typ
         }
 
     # and along index 1
+    
     if type(preds) == torch.Tensor and type(y) == torch.Tensor:
         preds = torch.prod(preds, axis=1)
         y = torch.prod(y, axis=1)
@@ -296,6 +297,11 @@ def main():
     y_train = y_all[train_idx]
     X_test = X_all[test_idx]
     y_test = y_all[test_idx]
+
+    print(f"[Train] X_train shape: {X_train.shape}")
+    print(f"[Train] y_train shape: {y_train.shape}")
+    print(f"[Train] X_test shape: {X_test.shape}")
+    print(f"[Train] y_test shape: {y_test.shape}")
 
     # Initialize and train MLP
     device = "cuda" if torch.cuda.is_available() else "cpu"
